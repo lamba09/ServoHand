@@ -21,4 +21,6 @@ endfunction()
 
 enable_testing()
 
-add_python_test(ExampleTest ${CMAKE_CURRENT_SOURCE_DIR}/test_Example.py)
+add_subdirectory(python)
+
+#add_python_test(Test_ServoHand ${CMAKE_CURRENT_SOURCE_DIR}/tests/Test_ServoHand.py)
