@@ -6,7 +6,7 @@ from servohand.ServoFinger import ServoFinger
 class Test_ServoHand:
 
     def setup_method(self, method):
-        self.servohand = ServoHand("default")
+        self.servohand = ServoHand()
 
     def teardown_method(self, method):
         del self.servohand
@@ -46,3 +46,9 @@ class Test_ServoHand:
 
     def test_move(self):
         self.servohand.move()
+        self.servohand.move(0,0,0,0,0)
+        assert self.servohand.getFingerPositions() == [0,0,0,0,0]
+        self.servohand.move(1,1,1,1,1)
+        assert self.servohand.getFingerPositions() == [1,1,1,1,1]
+        self.servohand.move(0, None, 0, None, 0)
+        assert self.servohand.getFingerPositions() == [0,1,0,1,0]

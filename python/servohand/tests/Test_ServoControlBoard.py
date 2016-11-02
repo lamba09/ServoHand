@@ -5,12 +5,11 @@ from servohand.ServoControlBoard import ServoControlBoard
 class Test_ServoControlBoard:
 
     def setup_method(self, method):
-        pass
-        #self.controlboard = ServoControlBoard("default")
+        self.controlboard = ServoControlBoard()
 
     def teardown_method(self, method):
-        pass
-        #del self.controlboard
+        del self.controlboard
 
-    def test_init(self):
-        pass
+    def test_move(self):
+        self.controlboard.move(0, 90)
+

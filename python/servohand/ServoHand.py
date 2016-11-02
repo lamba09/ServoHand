@@ -1,11 +1,17 @@
 from ServoFinger import ServoFinger
+from ServoControlBoard import ServoControlBoard
 
 
 class ServoHand(object):
 
-    def __init__(self, name):
+    def __init__(self, name="ServoHand"):
+        self._name = name
+        self._fingers = [ServoFinger(id_=i, name=name+"_finger"+str(id)) for i in xrange(5)]
 
-        self._fingers = [ServoFinger(index=i) for i in xrange(5)]
+    def setServoControlBoard(self, board):
+        assert isinstance(board, ServoControlBoard), "board has to be a ServoControlBoard object."
+        self._servo_control_board = board
+        self._servo_control_board.connectFingers(self._fingers)
 
     def getFinger(self, index):
         return self._fingers[index]
