@@ -1,20 +1,26 @@
-from ServoControlBoard import ServoControlBoard
+from servohand.ServoControlBoard import ServoControlBoard
 
 
 class ServoFinger(object):
 
-    def __init__(self, id_, name):
+    def __init__(self, id_, name, servo_control_board=None):
         assert type(id_) is int, "id of ServoFinger has to be of type int."
         self._id = id_
         self.name = str(name)
         self._position = 0.5
-        self._servo_control_board = ServoControlBoard()
+        self._servo_control_board = servo_control_board
+
+    def setServoControlBoard(self, board):
+        assert isinstance(board, ServoControlBoard), "board has to be a ServoControlBoard object."
+        self._servo_control_board = board
 
     def getID(self):
         return self._id
 
     def move(self, position=None):
-        if position is None:
+        if self._servo_control_board is None:
+            raise RuntimeError("No Servo Control Board connected. Add Servo Control Board using 'setServoControlBoard' method.")
+        if position is not None:
             self.setPosition(position)
         self._servo_control_board.move(position=self._servoPosition(), channel=self._id)
 

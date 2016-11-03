@@ -1,5 +1,5 @@
-from ServoFinger import ServoFinger
-from ServoControlBoard import ServoControlBoard
+from servohand.ServoFinger import ServoFinger
+from servohand.ServoControlBoard import ServoControlBoard
 
 
 class ServoHand(object):

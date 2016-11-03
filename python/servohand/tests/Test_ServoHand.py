@@ -1,12 +1,16 @@
 import pytest
 from servohand.ServoHand import ServoHand
 from servohand.ServoFinger import ServoFinger
+from servohand.ServoControlBoard import ServoControlBoard
+
 
 
 class Test_ServoHand:
 
     def setup_method(self, method):
         self.servohand = ServoHand()
+        board = ServoControlBoard()
+        self.servohand.setServoControlBoard(board)
 
     def teardown_method(self, method):
         del self.servohand
