@@ -1,11 +1,13 @@
-
+from abc import abstractmethod
 
 
 class ServoControlBoard(object):
 
     def __init__(self):
         self._channels = {}
+        self._servos = {}
 
+    @abstractmethod
     def move(self, channel, position):
         pass
 
@@ -15,5 +17,6 @@ class ServoControlBoard(object):
             self._addServoConnection(finger.getID())
             finger.setServoControlBoard(self)
 
+    @abstractmethod
     def _addServoConnection(self, channel):
        pass

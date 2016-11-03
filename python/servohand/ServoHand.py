@@ -21,10 +21,6 @@ class ServoHand(object):
         self.setFingerPositions(*positions)
         for i in xrange(5):
             self._fingers[i].move()
-#
-    #def binaryMove(self, configuration):
-    #    assert type(configuration) is int, "configuration has to be an integer (5 bit)"
-    #    # FIXME
 
     def setFingerPositions(self, a=None, b=None, c=None, d=None, e=None):
         positions = [a,b,c,d,e]
