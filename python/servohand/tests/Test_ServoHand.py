@@ -1,7 +1,7 @@
 import pytest
 from servohand.ServoHand import ServoHand
 from servohand.ServoFinger import ServoFinger
-from servohand.ServoControlBoard import ServoControlBoard
+from servohand.DummyServoControlBoard import DummyServoControlBoard as ServoControlBoard
 
 
 
@@ -56,3 +56,5 @@ class Test_ServoHand:
         assert self.servohand.getFingerPositions() == [1,1,1,1,1]
         self.servohand.move(0, None, 0, None, 0)
         assert self.servohand.getFingerPositions() == [0,1,0,1,0]
+
+

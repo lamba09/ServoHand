@@ -1,7 +1,9 @@
-from abc import abstractmethod
+from abc import abstractmethod, ABCMeta
 
 
 class ServoControlBoard(object):
+
+    __metaclass__ = ABCMeta
 
     def __init__(self):
         self._channels = {}
@@ -20,3 +22,6 @@ class ServoControlBoard(object):
     @abstractmethod
     def _addServoConnection(self, channel):
        pass
+
+    def calibrateFinger(self, channel, min_ms, full_ms, max_ms):
+        self._servos[channel].setCalibration(min_ms, full_ms, max_ms)

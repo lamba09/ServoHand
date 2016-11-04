@@ -34,3 +34,13 @@ class ServoFinger(object):
 
     def _servoPosition(self):
         return self._position # FIXME umrechnung und min max hier
+
+    def calibrate(self, min_ms, full_ms, max_ms):
+        self._servo_control_board.calibrateFinger(channel=self._id, min_ms=min_ms, full_ms=full_ms, max_ms=max_ms)
+
+
+
+
+
+
+
