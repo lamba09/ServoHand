@@ -21,9 +21,9 @@ class ServoFinger(object):
         if self._servo_control_board is None:
             raise RuntimeError("No Servo Control Board connected. Add Servo Control Board using 'setServoControlBoard' method.")
         if position is not None:
-            print "move() in ServoFinger ", self._id, " to position: ", position
             self.setPosition(position)
-            self._servo_control_board.move(position=self._servoPosition(), channel=self._id)
+        print "move() in ServoFinger ", self._id, " to position: ", position
+        self._servo_control_board.move(position=self._servoPosition(), channel=self._id)
 
     def setPosition(self, pos):
         if pos is not None:
