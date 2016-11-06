@@ -7,7 +7,6 @@ class MicroPythonBoard(ServoControlBoard):
     def __init__(self):
         super(MicroPythonBoard, self).__init__()
 
-
     def move(self, channel, position):
         pass
 
