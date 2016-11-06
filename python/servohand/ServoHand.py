@@ -18,6 +18,7 @@ class ServoHand(object):
 
     def move(self, a=None, b=None, c=None, d=None, e=None):
         positions = [a,b,c,d,e]
+        print "move() in ServoHand to positions: ", positions
         self.setFingerPositions(*positions)
         for i in xrange(5):
             self._fingers[i].move()

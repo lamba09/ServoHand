@@ -30,6 +30,7 @@ class RaspberryPiBoard(ServoControlBoard):
         return ms * self.SERVO_PWM_FREQ / 10.
 
     def move(self, channel, position):
+        print "move() in Raspberry Pi Board CH ", channel, "to positions: ", position
         position_ms = self._servos[channel].convertDegreeToMs(position)
         self._gpio_pins[channel].ChangeDutyCycle(self._convertMsToDutyCycle(position_ms))
         self._servos[channel].setPosition(position_ms)
