@@ -24,13 +24,14 @@ class RaspberryPiBoard(ServoControlBoard):
 
     def __del__(self):
         GPIO.cleanup()
+        print "GPIO cleanup complete."
 
     def _convertMsToDutyCycle(self, ms):
         return ms * self.SERVO_PWM_FREQ / 10.
 
     def move(self, channel, position):
         position_ms = self._servos[channel].convertDegreeToMs(position)
-        self._gpio_pins[channel].start(self._convertMsToDutyCycle(position_ms))
+        self._gpio_pins[channel].ChangeDutyCycle(self._convertMsToDutyCycle(position_ms))
         self._servos[channel].setPosition(position_ms)
 
     def _addServoConnection(self, channel):
