@@ -1,10 +1,17 @@
 import RPi.GPIO as GPIO
+
 GPIO.setmode(GPIO.BOARD)
 
-freq = 50. 
-pw = 1.5
-pw_percent = lambda pw_ms: pw_ms*freq/10.
+SERVO_PWM_FREQ = 50.
+
+def _pwmPulsewithFromMS(ms):
+    return ms * SERVO_PWM_FREQ / 10.
+
+
 
 GPIO.setup(7, GPIO.OUT)
-p = GPIO.PWM(7, freq)
-p.start(pw_percent(1.5))
+p = GPIO.PWM(7, SERVO_PWM_FREQ)
+p.start(_pwmPulsewithFromMS(1.5))
+
+
+
