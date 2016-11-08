@@ -6,6 +6,9 @@ import RPi.GPIO as GPIO
 
 class RaspberryPiBoard(ServoControlBoard):
 
+    MIN_DEGREE = -45
+    MAX_DEGREE = 90
+
     def __init__(self):
         super(RaspberryPiBoard, self).__init__()
         GPIO.setmode(GPIO.BOARD)
@@ -29,10 +32,10 @@ class RaspberryPiBoard(ServoControlBoard):
 
     def move(self, channel, position):
         print "move() in Raspberry Pi Board CH ", channel, "to positions: ", position
-        position_ms = self._servos[channel].convertDegreeToMs(position)
+        position_ms = self.MIN_DEGREE + position * (self.MAX_DEGREE - self.MIN_DEGREE)
         print "   --> position_ms = ", position_ms
         self._gpio_pins[channel].ChangeDutyCycle(self._convertMsToDutyCycle(position_ms))
-        print "   --> duty cycle  = ", self.convertMsToDutyCycle(position_ms)
+        print "   --> duty cycle  = ", self._convertMsToDutyCycle(position_ms)
         self._servos[channel].setPosition(position_ms)
 
     def _addServoConnection(self, channel):
