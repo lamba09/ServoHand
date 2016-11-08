@@ -32,7 +32,8 @@ class RaspberryPiBoard(ServoControlBoard):
 
     def move(self, channel, position):
         print "move() in Raspberry Pi Board CH ", channel, "to positions: ", position
-        position_ms = self.MIN_DEGREE + position * (self.MAX_DEGREE - self.MIN_DEGREE)
+        position_degree = self.MIN_DEGREE + position * (self.MAX_DEGREE - self.MIN_DEGREE)
+        position_ms = self._servos[channel].convertDegreeToMs(position_degree)
         print "   --> position_ms = ", position_ms
         self._gpio_pins[channel].ChangeDutyCycle(self._convertMsToDutyCycle(position_ms))
         print "   --> duty cycle  = ", self._convertMsToDutyCycle(position_ms)
