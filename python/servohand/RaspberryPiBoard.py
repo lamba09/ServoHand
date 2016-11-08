@@ -18,9 +18,7 @@ class RaspberryPiBoard(ServoControlBoard):
             3: 13,
             4: 15,
         }
-
         self._gpio_pins = {}
-
 
     def __del__(self):
         GPIO.cleanup()
@@ -32,7 +30,9 @@ class RaspberryPiBoard(ServoControlBoard):
     def move(self, channel, position):
         print "move() in Raspberry Pi Board CH ", channel, "to positions: ", position
         position_ms = self._servos[channel].convertDegreeToMs(position)
+        print "   --> position_ms = ", position_ms
         self._gpio_pins[channel].ChangeDutyCycle(self._convertMsToDutyCycle(position_ms))
+        print "   --> duty cycle  = ", self.convertMsToDutyCycle(position_ms)
         self._servos[channel].setPosition(position_ms)
 
     def _addServoConnection(self, channel):
