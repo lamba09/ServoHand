@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 
 class RaspberryPiBoard(ServoControlBoard):
 
-    MIN_DEGREE = -45
+    MIN_DEGREE = 45
     MAX_DEGREE = 90
 
     def __init__(self):
