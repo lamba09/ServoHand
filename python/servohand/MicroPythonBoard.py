@@ -10,7 +10,7 @@ class MicroPythonBoard(ServoControlBoard):
     def move(self, channel, position):
         pass
 
-    def _addServoConnection(self, channel):
+    def _addServoConnection(self, channel, calibration):
         assert channel in [0,1,2,3], "Invalid Servo Channel: {0}".format(channel)
-        if not self._servos.has_key(channel):
-            self._servos[channel] = pyb.Servo(channel+1)
+        if not self._servo_info.has_key(channel):
+            self._servo_info[channel] = pyb.Servo(channel+1)
