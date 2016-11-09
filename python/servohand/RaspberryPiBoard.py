@@ -21,7 +21,6 @@ class RaspberryPiBoard(ServoControlBoard):
         self._finger_calibrations = {}
         self._gpio_pins = {}
 
-
     def __del__(self):
         GPIO.cleanup()
         print "GPIO cleanup complete."
