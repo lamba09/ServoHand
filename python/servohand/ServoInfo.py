@@ -2,14 +2,14 @@
 
 class ServoInfo(object):
 
-    def __init__(self, channel, min_ms, max_ms, full_ms, pin=None):
+    def __init__(self, channel, min_ms, full_ms, max_ms, pin=None):
         self._position_ms = None
         self._channel = channel
         self._pin = pin
         self._calibration = {
             "min_ms": min_ms,
-            "full_ms": max_ms,
-            "max_ms": full_ms,
+            "full_ms": full_ms,
+            "max_ms": max_ms,
         }
 
     def setCalibration(self, min_ms, full_ms, max_ms):
