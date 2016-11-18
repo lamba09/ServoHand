@@ -11,12 +11,12 @@ class DummyServoControlBoard(ServoControlBoard):
 
     def move(self, channel, position):
         self._verifyPosition(channel, position)
-        self._servos[channel].setPosition(position)
+        self._servo_info[channel].setPosition(position)
 
-    def _addServoConnection(self, channel):
+    def _addServoConnection(self, channel, calibration):
         assert channel in [0,1,2,3,4], "Invalid Servo Channel: {0}".format(channel)
-        if not self._servos.has_key(channel):
-            self._servos[channel] = ServoInfo()
+        if not self._servo_info.has_key(channel):
+            self._servo_info[channel] = ServoInfo(channel, 0.5, 2.0, 1.5, pin=None)
 
     def _verifyPosition(self, channel, position):
         pass

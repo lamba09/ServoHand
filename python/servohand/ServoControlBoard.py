@@ -7,7 +7,7 @@ class ServoControlBoard(object):
 
     def __init__(self):
         self._channels = {}
-        self._servos = {}
+        self._servo_info = {}
 
     @abstractmethod
     def move(self, channel, position):
@@ -16,12 +16,12 @@ class ServoControlBoard(object):
     def connectFingers(self, finger_list):
         assert type(finger_list) is list
         for finger in finger_list:
-            self._addServoConnection(finger.getID())
+            self._addServoConnection(finger.getID(), finger.getCalibration())
             finger.setServoControlBoard(self)
 
     @abstractmethod
-    def _addServoConnection(self, channel):
+    def _addServoConnection(self, channel, calibration):
        pass
 
     def calibrateFinger(self, channel, min_ms, full_ms, max_ms):
-        self._servos[channel].setCalibration(min_ms, full_ms, max_ms)
+        self._servo_info[channel].setCalibration(min_ms, full_ms, max_ms)

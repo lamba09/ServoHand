@@ -6,9 +6,6 @@ import RPi.GPIO as GPIO
 
 class RaspberryPiBoard(ServoControlBoard):
 
-    MIN_DEGREE = 45
-    MAX_DEGREE = 90
-
     def __init__(self):
         super(RaspberryPiBoard, self).__init__()
         GPIO.setmode(GPIO.BOARD)
@@ -32,19 +29,20 @@ class RaspberryPiBoard(ServoControlBoard):
 
     def move(self, channel, position):
         print "move() in Raspberry Pi Board CH ", channel, "to positions: ", position
-        position_ms = self._servos[channel].convertPercentToMs(position)
+        position_ms = self._servo_info[channel].convertPercentToMs(position)
         print "   --> position_ms = ", position_ms
         self._gpio_pins[channel].ChangeDutyCycle(self._convertMsToDutyCycle(position_ms))
         print "   --> duty cycle  = ", self._convertMsToDutyCycle(position_ms)
-        self._servos[channel].setPosition(position_ms)
+        self._servo_info[channel].setPosition(position_ms)
 
     def _addServoConnection(self, channel):
         assert channel in [0,1,2,3,4], "Invalid Servo Channel: {0}".format(channel)
-        if not self._servos.has_key(channel):
+        if not self._servo_info.has_key(channel):
             gpio_pin = self._channel_gpio_pin_map[channel]
             GPIO.setup(gpio_pin, GPIO.OUT)
             self._gpio_pins[channel] = GPIO.PWM(gpio_pin, self.SERVO_PWM_FREQ)
             servo_info = ServoInfo(channel, 0.5, 2.0, 1.5, gpio_pin)
-            self._servos[channel] = servo_info
+            self._servo_info[channel] = servo_info
             self._gpio_pins[channel].start(self._convertMsToDutyCycle(1.5))
-            self._servos[channel].setPosition(1.5)
+            self._servo_info[channel].setPosition(1.5)
+            self._finger_calibrations[channel] = calibration

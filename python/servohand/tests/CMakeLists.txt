@@ -8,3 +8,4 @@
 add_python_test(Test_ServoHand ${CMAKE_CURRENT_SOURCE_DIR}/Test_ServoHand.py)
 add_python_test(Test_ServoFinger ${CMAKE_CURRENT_SOURCE_DIR}/Test_ServoFinger.py)
 add_python_test(Test_ServoControlBoard ${CMAKE_CURRENT_SOURCE_DIR}/Test_ServoControlBoard.py)
+add_python_test(Test_ServoInfo ${CMAKE_CURRENT_SOURCE_DIR}/Test_ServoInfo.py)
