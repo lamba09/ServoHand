@@ -35,6 +35,7 @@ class ServoInfo(object):
         return 1. + 0.5*(degree-45)/45.
 
     def convertPercentToMs(self, percent):
+        print "servoinfo: convertPercentToMs, ", percent
         assert 0. <= percent <= 1.5
         pos_min_ms = self._calibration["min_ms"]
         pos_full_ms = self._calibration["full_ms"]
