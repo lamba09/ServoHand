@@ -55,4 +55,4 @@ class ServoInfo(object):
     @classmethod
     def fromChannel(cls, channel, pin=None):
         channel_settings = self._channel_settings[channel]
-        return cls.(channel, channel_settings[0], channel_settings[1], channel_settings[2], pin)
+        return cls(channel, channel_settings[0], channel_settings[1], channel_settings[2], pin)
