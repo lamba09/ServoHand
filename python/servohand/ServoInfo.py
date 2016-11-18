@@ -3,11 +3,11 @@
 class ServoInfo(object):
 
     _channel_settings = {
-        0: (1.2, 1.9, 2.),
+        0: (1.9, 1.2, 0.5),
         1: (0.5, 2.5, 2.5),
         2: (0.5, 2.5, 2.5),
         3: (0.5, 2.5, 2.5),
-        4: (0.5, 2.5, 2.5),
+        4: (1.2, 1.9, 2.),
     }
 
     def __init__(self, channel, min_ms, full_ms, max_ms, pin=None):
