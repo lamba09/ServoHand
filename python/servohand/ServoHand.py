@@ -33,7 +33,7 @@ class ServoHand(object):
     def getFingerPositions(self):
         positions = [finger.getPosition() for finger in self._fingers]
         return positions
-    
+
     def moveBinary(self, number):
         assert 0 <= number < 2**5 and type(number) is int
         self.move(*map(int, list("{0:05b}".format(number)[::-1])))
