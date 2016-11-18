@@ -45,4 +45,3 @@ class RaspberryPiBoard(ServoControlBoard):
             self._servo_info[channel] = servo_info
             self._gpio_pins[channel].start(self._convertMsToDutyCycle(1.5))
             self._servo_info[channel].setPosition(1.5)
-            self._finger_calibrations[channel] = calibration
