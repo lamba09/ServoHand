@@ -41,11 +41,11 @@ class ServoFinger(object):
 
     def calibrate(self, min_ms, full_ms, max_ms):
         assert min_ms <= full_ms and full_ms <= max_ms
-        self._min_position_ms = min_ms
-        self._max_position_ms = max_ms
-        self._full_position_ms = full_ms
+        self._servo_control_board.calibrateFinger(self._id, min_ms=min_ms, full_ms=full_ms, max_ms=max_ms)
 
     def getCalibration(self):
+        # FIXME: DEPRECATED
+        print "WARNING DEPRECATED getCalibration in servofinger"
         calibration = {
             "min_ms": self._min_position_ms,
             "full_ms": self._full_position_ms,
