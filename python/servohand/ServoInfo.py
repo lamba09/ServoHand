@@ -2,6 +2,14 @@
 
 class ServoInfo(object):
 
+    _channel_settings = {
+        0, (0.5, 2.5, 2.5),
+        1, (0.5, 2.5, 2.5),
+        2, (0.5, 2.5, 2.5),
+        3, (0.5, 2.5, 2.5),
+        4, (0.5, 2.5, 2.5),
+    }
+
     def __init__(self, channel, min_ms, full_ms, max_ms, pin=None):
         self._position_ms = None
         self._channel = channel
@@ -10,13 +18,6 @@ class ServoInfo(object):
             "min_ms": min_ms,
             "full_ms": full_ms,
             "max_ms": max_ms,
-        }
-        self._channel_settings = {
-            0, (0.5, 2.5, 2.5),
-            1, (0.5, 2.5, 2.5),
-            2, (0.5, 2.5, 2.5),
-            3, (0.5, 2.5, 2.5),
-            4, (0.5, 2.5, 2.5),
         }
 
     def setCalibration(self, min_ms, full_ms, max_ms):
@@ -54,5 +55,5 @@ class ServoInfo(object):
 
     @classmethod
     def fromChannel(cls, channel, pin=None):
-        channel_settings = self._channel_settings[channel]
+        channel_settings = cls._channel_settings[channel]
         return cls(channel, channel_settings[0], channel_settings[1], channel_settings[2], pin)
