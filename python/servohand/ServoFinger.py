@@ -6,9 +6,6 @@ class ServoFinger(object):
     def __init__(self, id_, name, servo_control_board=None):
         assert type(id_) is int, "id of ServoFinger has to be of type int."
         self._id = id_
-        self._min_position_ms = 1.
-        self._max_position_ms = 1.8
-        self._full_position_ms = 1.5
         self.name = str(name)
         self._position = 0.5
         self._servo_control_board = servo_control_board
@@ -42,16 +39,6 @@ class ServoFinger(object):
     def calibrate(self, min_ms, full_ms, max_ms):
         assert min_ms <= full_ms and full_ms <= max_ms
         self._servo_control_board.calibrateFinger(self._id, min_ms=min_ms, full_ms=full_ms, max_ms=max_ms)
-
-    def getCalibration(self):
-        # FIXME: DEPRECATED
-        print "WARNING DEPRECATED getCalibration in servofinger"
-        calibration = {
-            "min_ms": self._min_position_ms,
-            "full_ms": self._full_position_ms,
-            "max_ms": self._max_position_ms
-        }
-        return calibration
 
 
 

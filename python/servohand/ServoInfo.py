@@ -11,6 +11,13 @@ class ServoInfo(object):
             "full_ms": full_ms,
             "max_ms": max_ms,
         }
+        self._channel_settings = {
+            0, (0.5, 2.5, 2.5),
+            1, (0.5, 2.5, 2.5),
+            2, (0.5, 2.5, 2.5),
+            3, (0.5, 2.5, 2.5),
+            4, (0.5, 2.5, 2.5),
+        }
 
     def setCalibration(self, min_ms, full_ms, max_ms):
         self._calibration["min_ms"] = min_ms
@@ -44,3 +51,8 @@ class ServoInfo(object):
             return pos_min_ms + (pos_full_ms - pos_min_ms) * percent
         else:
             raise ValueError("Servo not calibrated yet.")
+
+    @classmethod
+    def fromChannel(cls, channel, pin=None):
+        channel_settings = self._channel_settings[channel]
+        return cls.(channel, channel_settings[0], channel_settings[1], channel_settings[2], pin)

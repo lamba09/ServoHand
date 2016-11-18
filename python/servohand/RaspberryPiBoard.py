@@ -41,7 +41,7 @@ class RaspberryPiBoard(ServoControlBoard):
             gpio_pin = self._channel_gpio_pin_map[channel]
             GPIO.setup(gpio_pin, GPIO.OUT)
             self._gpio_pins[channel] = GPIO.PWM(gpio_pin, self.SERVO_PWM_FREQ)
-            servo_info = ServoInfo(channel, 0.5, 2.0, 1.5, gpio_pin)
+            servo_info = ServoInfo.fromChannel(channel, gpio_pin)
             self._servo_info[channel] = servo_info
             self._gpio_pins[channel].start(self._convertMsToDutyCycle(1.5))
             self._servo_info[channel].setPosition(1.5)
