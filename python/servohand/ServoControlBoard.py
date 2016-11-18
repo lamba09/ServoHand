@@ -16,11 +16,11 @@ class ServoControlBoard(object):
     def connectFingers(self, finger_list):
         assert type(finger_list) is list
         for finger in finger_list:
-            self._addServoConnection(finger.getID(), finger.getCalibration())
+            self._addServoConnection(finger.getID())
             finger.setServoControlBoard(self)
 
     @abstractmethod
-    def _addServoConnection(self, channel, calibration):
+    def _addServoConnection(self, channel):
        pass
 
     def calibrateFinger(self, channel, min_ms, full_ms, max_ms):
